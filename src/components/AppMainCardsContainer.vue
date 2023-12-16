@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios'
 import { store } from '../store';
 import AppCardTemplate from './AppCardTemplate.vue';
 export default {
@@ -11,11 +10,6 @@ export default {
         return {
             store,
         }
-    },
-    created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Exodia').then((response) => {
-            store.cards = response.data
-        })
     }
 }
 </script>

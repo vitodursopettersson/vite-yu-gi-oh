@@ -1,19 +1,13 @@
 <script>
-import { store } from '../store';
 export default {
     name: 'AppFoundCard',
-    data() {
-        return {
-            store,
-        }
-    }
+    props: ['foundCard']
 }
 </script>
 
 <template>
     <div class="found-card">
-
-        <p>Found {{ store.cards.data.length }} cards</p>
+        <p>Found {{ foundCard }} cards</p>
     </div>
 </template>
 

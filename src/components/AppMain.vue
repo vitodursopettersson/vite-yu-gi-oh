@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios'
+import { store } from '../store';
 import AppMainSelectCategoryCard from './AppMainSelectCategoryCard.vue';
 import AppFoundCard from './AppFoundCard.vue';
 import AppMainCardsContainer from './AppMainCardsContainer.vue';
@@ -9,7 +11,18 @@ export default {
         AppMainSelectCategoryCard,
         AppFoundCard,
         AppMainCardsContainer,
+    },
+    data() {
+        return {
+            store,
+        }
+    },
+    created() {
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Exodia').then((response) => {
+            store.cards = response.data
+        })
     }
+
 }
 </script>
 
@@ -18,7 +31,7 @@ export default {
         <div class="container">
             <AppMainSelectCategoryCard />
             <div class="container-groupcard">
-                <AppFoundCard />
+                <AppFoundCard :foundCard="store.cards.data.length" />
                 <AppMainCardsContainer />
             </div>
         </div>
