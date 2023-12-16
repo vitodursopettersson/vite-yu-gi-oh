@@ -17,9 +17,20 @@ export default {
             store,
         }
     },
+    methods: {
+        searchArchetype() {
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Exodia', {
+                params: {
+                    archetype: store.selectedArchetype
+                }
+            }).then((response) => {
+                store.cards = response.data.data
+            })
+        }
+    },
     created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Exodia').then((response) => {
-            store.cards = response.data
+        axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php').then((response) => {
+            store.archetypeList = response.data
         })
     }
 
@@ -29,9 +40,9 @@ export default {
 <template>
     <main>
         <div class="container">
-            <AppMainSelectCategoryCard />
+            <AppMainSelectCategoryCard @search="searchArchetype" />
             <div class="container-groupcard">
-                <AppFoundCard :foundCard="store.cards.data.length" />
+                <AppFoundCard :foundCard="store.cards.length" />
                 <AppMainCardsContainer />
             </div>
         </div>

@@ -15,7 +15,7 @@ export default {
 </script>
 <template>
     <div class="card-container">
-        <AppCardTemplate v-for="card in store.cards.data" :name="card.name" :img="card.card_images[0].image_url"
+        <AppCardTemplate v-for="card in store.cards" :name="card.name" :img="card.card_images[0].image_url"
             :archetype="card.archetype" />
     </div>
 </template>

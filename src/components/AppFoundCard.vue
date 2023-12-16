@@ -1,13 +1,20 @@
 <script>
+import { store } from '../store';
 export default {
     name: 'AppFoundCard',
-    props: ['foundCard']
+    props: ['foundCard'],
+    data() {
+        return {
+            store
+        }
+    }
 }
 </script>
 
 <template>
     <div class="found-card">
-        <p>Found {{ foundCard }} cards</p>
+        <p v-if="store.cards.length !== 0">{{ foundCard }} carte trovate</p>
+        <p v-else>Nessuna carta trovata</p>
     </div>
 </template>
 
